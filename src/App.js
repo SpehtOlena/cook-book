@@ -1,14 +1,9 @@
 import './App.css';
-import Button from './components/Button/Button';
-import Name from './components/StyledComponents/Name.js';
+import OneCard from './components/OneCard/OneCard.js';
 import Person from './components/Person/Person';
-import ButtonStyled from './components/StyledComponents/ButtonStyled.js';
-import StyledName from './components/StyledComponents/StyledName.js';
 import SupperButton from './components/StyledComponents/SupperButton.js';
-import Thing from './components/StyledComponents/Thing.js';
-import Title from './components/StyledComponents/Title.js';
-import Wrapper from './components/StyledComponents/Wrapper.js';
-
+import Title from './components/StyledComponents/Title.js'
+import { useState } from 'react';
 
 const persons = [
 	{
@@ -166,32 +161,59 @@ const persons = [
 	}
 ]
 
-function App() {
-	return (
-		<div>
-			<Wrapper>
-				<Title>Title</Title>
-			</Wrapper>
-			<ButtonStyled primary={'true'}>Click me!</ButtonStyled>
-			<SupperButton primary={'true'}>I'm a supper button!</SupperButton>
-			<Name firstName={'Taras'} secondName={'Wert'} />
-			<StyledName firstName={'Oleg'} secondName={'Fera'} />
-			<div className={'container'}>
-				<Button type={'primary'}>Text</Button>
-				<Thing>Hell world!</Thing>
-				<Thing>How ya doing?</Thing>
-				<Thing className={'something'}>The sun is shining</Thing>
-				<div className={'something'}>Pretty nice day today</div>
-				<Thing>Don't you thing?</Thing>
-				<div className={'something-else'} style={{ width: '100%' }}>
-					<Thing>Amazing!</Thing>
-				</div>
-			</div>
-			<div className="App">
-				{
-					persons.map(value => <Person key={value.phone} obj={value} />)
-				}
 
+
+
+function App() {
+
+	// Counter
+
+	const [number, setNumber] = useState(0);
+
+	const plus = () => {
+		setNumber(number + 1)
+	};
+
+	const minus = () => {
+		setNumber(number - 1)
+	};
+
+
+
+	return (
+		<div className={'main'}>
+			<div>
+				<div className={'counter'}>
+					<h2>Lesson 7</h2>
+					<h3>Counter</h3>
+					<OneCard />
+					<div style={{ display: 'flex', flexDirection: 'row', gap: 15 }}>
+						<SupperButton onClick={minus}>-</SupperButton>
+						<Title>{number}</Title>
+						<SupperButton onClick={plus}>+</SupperButton>
+					</div>
+					<SupperButton onClick={() => {
+						console.log(number);
+					}}>Show number</SupperButton>
+				</div>
+
+
+				<br />
+				<br />
+				<hr />
+				<hr />
+
+				<hr />
+				<br />
+				<br />
+				<div className="App">
+					{
+
+						persons.map(value => <Person key={value.phone} obj={value} />)
+					}
+
+
+				</div>
 			</div>
 		</div>
 	);

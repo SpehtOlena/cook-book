@@ -40,6 +40,7 @@ const Person = ({ obj }) => {
 					<h2>{username}</h2>
 					<ol>
 						<li>{phone}</li>
+						<h4>{role}</h4>
 					</ol>
 				</div >
 			)
