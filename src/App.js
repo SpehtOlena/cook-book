@@ -4,6 +4,11 @@ import Person from './components/Person/Person';
 import SupperButton from './components/StyledComponents/SupperButton.js';
 import Title from './components/StyledComponents/Title.js'
 import { useState } from 'react';
+import Home from './Pages/Home/Home.js';
+import Sale from './Pages/Sale/Sale.js';
+import List from './Pages/List/List.js';
+import Menu from './components/Menu/Menu.js';
+import Gallery from './components/Gallery/Gallery.js';
 
 const persons = [
 	{
@@ -161,10 +166,27 @@ const persons = [
 	}
 ]
 
-
+const menuItems = [
+	{
+		label: 'Home',
+		element: <Home />
+	},
+	{
+		label: 'Sale',
+		element: <Sale />
+	},
+	{
+		label: 'List',
+		element: <List />
+	}
+]
 
 
 function App() {
+
+	const [activePage, setActivePage] = useState(null);
+
+	const [activePhoto, setActivePhoto] = useState(null);
 
 	// Counter
 
@@ -182,6 +204,10 @@ function App() {
 
 	return (
 		<div className={'main'}>
+			<Menu items={menuItems} setActivePage={setActivePage} />
+			{activePage}
+			<Gallery photo={persons} setActivePhoto={setActivePhoto} activePhoto={activePhoto} />
+			<img></img>
 			<div>
 				<div className={'counter'}>
 					<h2>Lesson 7</h2>
