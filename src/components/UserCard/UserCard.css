@@ -1,0 +1,33 @@
+.user-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	width: 300px;
+	border: 1px solid #000;
+	border-radius: 20px;
+	cursor: pointer;
+}
+
+.male {
+	background-color: #2673ca;
+	color: #fff;
+	padding: 10px;
+}
+
+.female {
+	background-color: #f8669e;
+	color: #fff;
+	padding: 10px;
+}
+
+.male:hover {
+	background-color: #e9edf3;
+	color: #0d349e;
+}
+
+.female:hover {
+	background-color: #f0e9eb;
+	color: #ad1051;
+}
