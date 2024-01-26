@@ -1,39 +1,19 @@
 import './App.css';
-import AdminPage from "./components/Pages/AdminPage/AdminPage.js";
-import UserPage from './components/Pages/UserPage/UserPage.js';
-import GuestPage from './components/Pages/GuestPage/GuestPage.js'
 import { useState } from 'react';
+import Modal from './components/Modal/Modal';
 
 const App = () => {
-	const [userType, setUserType] = useState('');
-	function renderUserType() {
-		switch (userType) {
-			case "admin": {
-				return <AdminPage />
-			}
-			case "user": {
-				return <UserPage />
-			}
-			case "guest": {
-				return <GuestPage />
-			}
-			default: {
-				return <div>Тип не визначений</div>
-			}
-		}
-
+	const [modalOpen, setModalOpen] = useState(false);
+	const handleButtonClick = () => {
+		setModalOpen(!modalOpen)
 	}
 	return (
-		<div className={'App'}>
-			<div className={'button-container'}>
-				<button className={userType === 'admin' ? 'active-button' : ''} onClick={() => { setUserType('admin') }}>Admin</button>
-				<button className={userType === 'user' ? 'active-button' : ''} onClick={() => { setUserType('user') }}>User</button>
-				<button className={userType === 'guest' ? 'active-button' : ''} onClick={() => { setUserType('guest') }}>Guest</button>
-			</div>
-			{
-				renderUserType()
-			}
-
+		<div>
+			<button onClick={handleButtonClick}>Open Modal</button>
+			<Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+				<h2>Its your modal window</h2>
+				<h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque qui numquam provident voluptate. Quam reprehenderit perspiciatis tempore illo eum cupiditate corporis possimus repellat. Dolor perspiciatis iusto fugit ratione, dolore dolores!</h5>
+			</Modal>
 		</div>
 	)
 }

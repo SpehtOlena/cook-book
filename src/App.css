@@ -18,13 +18,14 @@
 	padding: 30px;
 }
 
-.button-container button {
-	padding: 20px;
-	border-radius: 10px;
-	align-items: center;
-	cursor: pointer;
+.box {
+	width: 100px;
+	height: 100px;
+	display: flex;
+	background-color: yellow;
+	transition: all 0.3s ease 0s;
 }
 
-.active-button {
-	background-color: rgb(0, 247, 255);
+.animate {
+	transform: translateX(100px);
 }
