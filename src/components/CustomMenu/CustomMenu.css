@@ -1,0 +1,9 @@
+.header-menu {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	height: 80px;
+	cursor: pointer;
+	align-items: center;
+	align-content: center;
+}

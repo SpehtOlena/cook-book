@@ -1,19 +1,34 @@
-import './App.css';
-import { useState } from 'react';
-import Modal from './components/Modal/Modal';
+import { useState } from 'react'
+import './App.css'
+import CustomForm from './components/CustomForm/CustomForm'
+import CustomMenu from './components/CustomMenu/CustomMenu'
+import DataForm from './components/DataForm/DataForm'
+import Home from './components/Home/Home'
+
+
 
 const App = () => {
-	const [modalOpen, setModalOpen] = useState(false);
-	const handleButtonClick = () => {
-		setModalOpen(!modalOpen)
-	}
+	const [activePage, setActivePage] = useState();
+	const [data, setData] = useState([]);
+	const menuItems = [
+		{
+			label: "Home",
+			element: <Home />
+		},
+		{
+			label: "Custom Form",
+			element: <CustomForm setData={setData} data={data} setActivePage={setActivePage} />
+		},
+		{
+			label: "Data Form",
+			element: <DataForm setData={setData} data={data} setActivePage={setActivePage} />
+		}
+	]
 	return (
 		<div>
-			<button onClick={handleButtonClick}>Open Modal</button>
-			<Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
-				<h2>Its your modal window</h2>
-				<h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque qui numquam provident voluptate. Quam reprehenderit perspiciatis tempore illo eum cupiditate corporis possimus repellat. Dolor perspiciatis iusto fugit ratione, dolore dolores!</h5>
-			</Modal>
+			<CustomMenu menuItems={menuItems} setActivePage={setActivePage} />
+			{activePage}
+
 		</div>
 	)
 }
