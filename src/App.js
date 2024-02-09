@@ -1,34 +1,35 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import axios from 'axios';
 import './App.css'
-import CustomForm from './components/CustomForm/CustomForm'
-import CustomMenu from './components/CustomMenu/CustomMenu'
-import DataForm from './components/DataForm/DataForm'
-import Home from './components/Home/Home'
-
+import { useEffect } from 'react';
+import UserForm from './components/UserForm/UserForm';
+import UserList from './components/UserList/UserList';
+import { Row, } from 'antd';
+import CustomerMenu from './components/CustomerMenu/CustomerMenu';
 
 
 const App = () => {
-	const [activePage, setActivePage] = useState();
 	const [data, setData] = useState([]);
+	const [activePage, setActivePage] = useState(<UserForm />);
+	useEffect(() => {
+		axios.get('http://localhost:3000/users')
+			.then(res => { setData(res.data) })
+	}, [])
 	const menuItems = [
 		{
-			label: "Home",
-			element: <Home />
+			label: 'Form',
+			element: <UserForm globalData={data} setData={setData} setActivePage={setActivePage} />
 		},
 		{
-			label: "Custom Form",
-			element: <CustomForm setData={setData} data={data} setActivePage={setActivePage} />
-		},
-		{
-			label: "Data Form",
-			element: <DataForm setData={setData} data={data} setActivePage={setActivePage} />
-		}
-	]
+			label: 'List',
+			element: <UserList globalData={data} setData={setData} setActivePage={setActivePage} />
+		},]
 	return (
 		<div>
-			<CustomMenu menuItems={menuItems} setActivePage={setActivePage} />
+			<Row>
+				<CustomerMenu items={menuItems} setActivePage={setActivePage} activePage={activePage} />
+			</Row>
 			{activePage}
-
 		</div>
 	)
 }
